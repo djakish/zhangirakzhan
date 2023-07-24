@@ -1,0 +1,33 @@
+server:
+  port: 8090
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: orders-group-id
+  artemis:
+    mode: embedded
+    embedded:
+      queues: test-queue
+      enabled: true
+
+
+app:
+  sending:
+    topic:
+      name: default
+  receiving:
+    topic:
+      name: self
+
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.example.zhangirakzhan: INFO

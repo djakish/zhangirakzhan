@@ -1,7 +1,6 @@
 package com.example.zhangirakzhan.service;
 
 import com.example.zhangirakzhan.entity.User;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.stream.Stream;
