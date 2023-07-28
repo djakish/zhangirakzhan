@@ -1,0 +1,32 @@
+server:
+  port: 8090
+  compression:
+    enabled: true
+  address: 0.0.0.0
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: orders-group-id
+  activemq:
+    broker-url: tcp://localhost:61616
+    in-memory: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration, org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration
+
+app:
+  sending:
+    topic:
+      name: default
+  receiving:
+    topic:
+      name: self
+
+logging:
+  pattern:
+    console: "%-5level: %class{0} - %msg%n"
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.example.zhangirakzhan: INFO
