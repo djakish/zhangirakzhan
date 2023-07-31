@@ -1,8 +1,7 @@
 package com.example.zhangirakzhan.service;
 
 
-import com.example.zhangirakzhan.dto.LoginDTO;
-import com.example.zhangirakzhan.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwsHeader;
@@ -11,7 +10,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.stream.Collectors;
@@ -20,7 +18,10 @@ import java.util.stream.Collectors;
 @Repository
 public class TokenService {
 
+    @Autowired
     private final JwtEncoder encoder;
+
+    @Autowired
     public TokenService(JwtEncoder encoder) {
         this.encoder = encoder;
     }
@@ -28,7 +29,7 @@ public class TokenService {
     public String generateToken(Authentication auth) {
         JwsHeader jwsHeader = JwsHeader.with(() -> "HS256").build();
         Instant now = Instant.now();
-        Instant expiration = now.plusSeconds(30 * 24 * 60 * 60);
+        Instant expiration = now.plusSeconds(30L * 24L * 60L * 60L);
         String scope = auth.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));

@@ -2,16 +2,11 @@ package com.example.zhangirakzhan.controller;
 
 
 import com.example.zhangirakzhan.entity.Order;
-import com.example.zhangirakzhan.entity.Product;
-import com.example.zhangirakzhan.entity.User;
 import com.example.zhangirakzhan.service.OrderService;
-import com.example.zhangirakzhan.service.TokenService;
 import com.example.zhangirakzhan.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-@CrossOrigin("*")
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;

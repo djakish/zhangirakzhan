@@ -1,12 +1,13 @@
 package com.example.zhangirakzhan.service;
 
 import com.example.zhangirakzhan.entity.Product;
-import com.example.zhangirakzhan.repository.OrderRepository;
 import com.example.zhangirakzhan.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -18,6 +19,11 @@ public class ProductService implements IProductService {
     @Autowired
     public ProductService(ProductRepository productRepository){
         this.productRepository = productRepository;
+    }
+
+    @Override
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
     @Override
     public void addProduct(Product product) {

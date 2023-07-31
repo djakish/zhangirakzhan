@@ -33,20 +33,23 @@ import java.util.List;
 public class WebSecurityConfig {
     @Value("${jwt.secret}")
     public String jwtSecret;
-    @Autowired
-    private MyAuthenticationProvider authenticationProvider;
+
     @Bean
-    AuthenticationManager authenticationManager() throws Exception {
+    @Autowired
+    AuthenticationManager authenticationManager(MyAuthenticationProvider authenticationProvider)  {
         List<AuthenticationProvider> providers = new ArrayList<>();
         providers.add(authenticationProvider);
         return new ProviderManager(authenticationProvider);
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
                         authorize.requestMatchers("/api/auth/**").permitAll();
+                        authorize.requestMatchers("/products/**").permitAll();
+                        authorize.requestMatchers("/orders/**").permitAll();
                         authorize.anyRequest().authenticated();
                     }
                 )
