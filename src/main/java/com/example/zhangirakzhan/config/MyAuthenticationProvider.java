@@ -13,8 +13,12 @@ import java.util.Arrays;
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
+    private final UserService myService;
+
     @Autowired
-    UserService myService;
+    public MyAuthenticationProvider(UserService myService) {
+        this.myService = myService;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
