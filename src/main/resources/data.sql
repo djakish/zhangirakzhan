@@ -1,6 +1,6 @@
 -- Insert sample data into USERS table
-INSERT INTO USERS (ID, USERNAME, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD)
-VALUES (1, 'user1', 'John', 'Doe', 'john.doe@example.com', 'password123');
+INSERT INTO USERS (ID, ROLE, USERNAME, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD)
+VALUES (1, 'ADMIN', 'user1', 'John', 'Doe', 'john.doe@example.com', 'password123');
 
 -- Insert sample data into ADDRESSES table
 INSERT INTO ADDRESSES (ID, COUNTRY, STREET, CITY, POSTAL_CODE, USER_ID)

@@ -23,11 +23,11 @@ import java.util.Map;
 public class KafkaConfig {
     private final KafkaProperties kafkaProperties;
 
-    @Value("#{zhangirakzhanApplication.sendingTopic}")
-    private String sendingTopicName;
+    @Value("${app.sending.topic.name}")
+    public String sendingTopicName;
 
-    @Value("#{zhangirakzhanApplication.receivingTopic}")
-    private String receivingTopicName;
+    @Value("${app.receiving.topic.name}")
+    public String receivingTopicName;
 
     // PRODUCER
     @Bean // configs for the LetterSender

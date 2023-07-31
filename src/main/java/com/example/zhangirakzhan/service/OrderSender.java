@@ -1,34 +1,25 @@
 package com.example.zhangirakzhan.service;
 
-
 import com.example.zhangirakzhan.entity.Order;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
-@Component
-@Slf4j
+import java.util.UUID;
+
 @RequiredArgsConstructor
+@Service
+@Slf4j
 public class OrderSender {
-
-    @Autowired
-    private final JmsTemplate jmsTemplate;
-
-    @PostConstruct
-    public void init(){
-        jmsTemplate.setDeliveryDelay(2000L);
-    }
-
-    @Value("${spring.artemis.embedded.queues}")
-    private String queueName;
-
+    @Value("#{zhangirakzhanApplication.sendingTopic}")
+    public String sendingToTopicName;
+    @Value("#{zhangirakzhanApplication.receivingTopic}")
+    private String sender;
+    private final KafkaTemplate<String,Object> kafkaTemplate;
     public void send(Order order) {
-        log.info("SENDING ORDER='{}'", order);
-        jmsTemplate.convertAndSend(queueName, order);
+        log.info("[{}] Sending order {}", sender, order);
+        kafkaTemplate.send(sendingToTopicName, UUID.randomUUID().toString(), order);
     }
-
 }

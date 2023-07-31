@@ -1,5 +1,6 @@
 package com.example.zhangirakzhan.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "ORDERS")
 public class Order {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @Id
     private Long id;
@@ -19,6 +21,7 @@ public class Order {
     @NotEmpty
     private double quantity;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;

@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @Id
     private Long id;
