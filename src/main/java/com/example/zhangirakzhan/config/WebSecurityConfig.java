@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> {
                         authorize.requestMatchers("/api/auth/**").permitAll();
                         authorize.requestMatchers("/products/**").permitAll();
-                        authorize.requestMatchers("/orders/**").permitAll();
+                        authorize.requestMatchers("/complete/**").permitAll();
                         authorize.anyRequest().authenticated();
                     }
                 )

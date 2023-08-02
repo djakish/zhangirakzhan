@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin("*")
@@ -45,6 +47,18 @@ public class AuthController {
                 )
         );
         return user;
+    }
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public Stream<User> register() {
+        return this.userService.findAll();
+    }
+
+    @GetMapping("/email")
+    @ResponseStatus(HttpStatus.OK)
+    public String register(@RequestBody Long Id) {
+        return this.userService.findEmailById(Id);
     }
 
     @PostMapping("/login")
