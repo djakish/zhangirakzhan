@@ -16,8 +16,8 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class CompletableFutureService {
     private static final String API_ENDPOINT_1 = "http://localhost:8090/products/";
-    private static final String API_ENDPOINT_2 = "http://localhost:8090/api/auth/all/";
-    private static final String API_ENDPOINT_3 = "http://localhost:8090/api/auth/email/";
+    private static final String API_ENDPOINT_2 = "http://localhost:8090/api/auth/all";
+    private static final String API_ENDPOINT_3 = "http://localhost:8090/api/auth/email/1";
 
 
 
@@ -89,15 +89,7 @@ public class CompletableFutureService {
 
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoOutput(true);
         connection.setRequestMethod("GET");
-
-        OutputStream os = connection.getOutputStream();
-        OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
-        osw.write("1");
-        osw.close();
-        os.close();
-
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
             String line;

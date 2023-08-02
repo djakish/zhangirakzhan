@@ -55,9 +55,9 @@ public class AuthController {
         return this.userService.findAll();
     }
 
-    @GetMapping("/email")
+    @GetMapping("/email/{someID}")
     @ResponseStatus(HttpStatus.OK)
-    public String register(@RequestBody Long Id) {
+    public String register(@PathVariable(value="someID") Long Id) {
         return this.userService.findEmailById(Id);
     }
 
